@@ -32,6 +32,7 @@
 
    `Python manage.py migrate`
 
+
  - Criar um superUsuário:
 
    `python manage.py createsuperuser`
