@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 
 from cadastros.models import Cidade
 
@@ -19,11 +19,11 @@ def lista_cidades(request):
 
 def detalhe_cidade(request):
 
-    id_cidade = 3
+    id_cidade = request.GET['id_cidade']
 
-    cidade = Cidade.objects.get(pk=id_cidade)
+
+    cidade = get_object_or_404.(Cidade, pk=id_cidade)
     # cidade = Cidade.objects.filter(nome='Belo Horizonte')
-    print(cidade)
 
     context = {
         'cidades': cidade
