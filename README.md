@@ -36,3 +36,8 @@
  - Criar um superUsuário:
 
    `python manage.py createsuperuser`
+
+# Opcional
+ - Baixar o ipython
+ 
+   `pip install ipython`
