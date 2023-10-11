@@ -17,6 +17,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+from cadastros.views import lista_cidades
+
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('cidades/', lista_cidades, name='cidades-list') #http://proj/cidades
 ]
