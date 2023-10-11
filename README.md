@@ -41,3 +41,6 @@
  - Baixar o ipython
  
    `pip install ipython`
+
+# Referencias
+ - [Django Shotcuts](https://docs.djangoproject.com/en/4.2/topics/http/shortcuts/)
