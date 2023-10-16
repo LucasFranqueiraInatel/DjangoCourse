@@ -27,7 +27,7 @@ def detalhe_cidade(request, id):
     # cidade = Cidade.objects.filter(nome='Belo Horizonte')
 
     context = {
-        'cidades': cidade
+        'cidade': cidade
     }
 
     return render(request, 'cadastros/detalhe_cidades.html', context)
