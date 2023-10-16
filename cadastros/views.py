@@ -17,12 +17,13 @@ def lista_cidades(request):
 
     return render(request, 'cadastros/lista_cidades.html', context)
 
-def detalhe_cidade(request):
+def detalhe_cidade(request, id):
 
-    id_cidade = request.GET['id_cidade']
+    # id_cidade = request.GET['id_cidade']
 
 
-    cidade = get_object_or_404.(Cidade, pk=id_cidade)
+    cidade = get_object_or_404(Cidade, pk=id)
+    # cidade = Cidade.objects.get(pk=id_cidade)
     # cidade = Cidade.objects.filter(nome='Belo Horizonte')
 
     context = {
