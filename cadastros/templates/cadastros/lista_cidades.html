@@ -1,14 +1,19 @@
 {% extends 'base.html' %}
 
 {% block conteudo %}
-    <h1>Cidades Cadastradas</h1>
-
+<h1>Cidades Cadastradas</h1>
+<p>
+    <a class="btn btn-primary" href="{% url 'cidades-cadastro' %}" role="button">Cadastrar nova Cidade</a>
+</p>
+<div>
     <ul class="list-group">
 
         {% for cidade in cidades %}
-        <a class="list-group-item  {% if cidade.capital%}active{%endif%}" href="{% url 'cidades-detalhe' cidade.id %}">{{cidade.nome}} - {{cidade.id}}</a>
+        <a class="list-group-item  {% if cidade.capital%}active{%endif%}" href="{% url 'cidades-detalhe' cidade.id %}">{{cidade.nome}}
+            - {{cidade.id}}</a>
         {% endfor %}
     </ul>
+</div>
 
 
 {% endblock %}

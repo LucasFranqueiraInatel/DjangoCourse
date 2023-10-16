@@ -1,10 +1,13 @@
 {% extends 'base.html' %}
 
 {% block conteudo %}
-    <h1>Cidades Cadastradas</h1>
+<h1>Cidades Cadastradas</h1>
 
-    <p>Nome: {{cidade.nome}} {% if cidade.capital %}<span class="badge text-bg-primary">Capital</span>{% endif %}</p>
-
+<p>Nome: {{cidade.nome}} {% if cidade.capital %}<span class="badge text-bg-primary">Capital</span>{% endif %}</p>
+<div>
     <a class="btn btn-danger" href="{% url 'cidades-list' %}" role="button">Back</a>
+    <a class="btn btn-danger" href="{% url 'cidades-remove' cidade.pk %}">Apagar Registo</a>
+</div>
+
 
 {% endblock %}
