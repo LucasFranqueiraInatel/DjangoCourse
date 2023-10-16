@@ -31,3 +31,9 @@ def detalhe_cidade(request, id):
     }
 
     return render(request, 'cadastros/detalhe_cidades.html', context)
+
+def cadastra_cidade(request):
+
+    context = {}
+
+    return render(request, 'cadastros/cadastra_cidades.html', context)

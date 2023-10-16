@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block conteudo %}
+<h1>Nova Cidade</h1>
+
+<form action="{% url 'cidades-cadastro' %}" method="post">
+    {% csrf_token %}
+    <div class="mb-3">
+        <label class="form-label">Nome</label>
+        <input type="text" name="nome" class="form-control">
+    </div>
+    <div class="mb-3 form-check">
+        <input type="checkbox" name="capital" class="form-check-input">
+        <label class="form-check-label">Capital</label>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+{% endblock %}
