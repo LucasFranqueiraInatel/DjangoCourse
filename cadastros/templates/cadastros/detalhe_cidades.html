@@ -4,6 +4,8 @@
 <h1>Cidades Cadastradas</h1>
 
 <p>Nome: {{cidade.nome}} {% if cidade.capital %}<span class="badge text-bg-primary">Capital</span>{% endif %}</p>
+<p>Estado: {{cidade.estado|default_if_none:'-'}}</p>
+<p>Pais: {{cidade.estado.pais|default_if_none:'-'}}</p>
 <div>
     <div class="d-grid gap-2 d-md-flex justify-content-md-start ">
         <a class="btn btn-info" href="{% url 'cidades-editar' cidade.id %}" role="button">Atualizar Registro</a>
