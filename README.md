@@ -30,7 +30,7 @@
 
  - Executar as alterações no BD:
 
-   `Python manage.py migrate`
+   `python manage.py migrate`
 
 
  - Criar um superUsuário:
