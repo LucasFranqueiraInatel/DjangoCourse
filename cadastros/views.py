@@ -1,80 +1,51 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404, redirect
+from django.urls import reverse_lazy
+from django.views import View
+from django.views.generic import ListView, DetailView, DeleteView, CreateView, UpdateView
 
 from cadastros.forms import CidadeForm
 from cadastros.models import Cidade
 
 
-# Create your views here.
-
-# function based views -> fbv
-def lista_cidades(request):
-    # ORM do Django
-    qs = Cidade.objects.all().order_by('nome')
-
-    context = {
-        "cidades": qs,
-        "titulo": "SIDIA"
-    }
-
-    return render(request, 'cadastros/lista_cidades.html', context)
+class SidiaBaseListView(ListView):
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["titulo"] = "PROJETO SIDIA"
+        return context
 
 
-def detalhe_cidade(request, id):
-    # id_cidade = request.GET['id_cidade']
+class CidadeList(SidiaBaseListView):
+    queryset = Cidade.objects.all().order_by('nome')
+    context_object_name = 'cidades'
+    template_name = 'cadastros/lista_cidades.html'
 
-    cidade = get_object_or_404(Cidade, pk=id)
-    # cidade = Cidade.objects.get(pk=id_cidade)
-    # cidade = Cidade.objects.filter(nome='Belo Horizonte')
 
-    context = {
-        'cidade': cidade,
-        "titulo": "SIDIA"
-    }
+class CidadeDetail(DetailView):
+    queryset = Cidade.objects.all()
+    context_object_name = 'cidade'
+    # pk_url_kwarg = 'id'
+    template_name = 'cadastros/detalhe_cidades.html'
 
-    return render(request, 'cadastros/detalhe_cidades.html', context)
 
-@login_required
-def remove_cidade(request, id):
-    # id_cidade = request.GET['id_cidade']
+class CidadeDelete(DeleteView):
+    context_object_name = 'cidade'
+    model = Cidade
+    template_name = 'cadastros/remove_cidades.html'
+    success_url = reverse_lazy('cidades-list')
 
-    cidade = get_object_or_404(Cidade, pk=id)
-    cidade.delete()
 
-    return redirect('cidades-list')
+class CidadeCreate(CreateView):
+    mode = Cidade
+    # fields = ['nome', 'capital']
+    form_class = CidadeForm
+    template_name = 'cadastros/cadastra_cidades.html'
+    success_url = reverse_lazy('cidades-list')
 
-@login_required
-def cadastra_cidade(request):
-    if request.method == "POST":
-        form = CidadeForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('cidades-list')
-    else:
-        form = CidadeForm()
 
-    context = {
-        'form': form
-    }
-
-    return render(request, 'cadastros/cadastra_cidades.html', context)
-
-@login_required
-def editar_cidade(request, id):
-    # id = request.GET.get('id', None)
-    cidade_obj = get_object_or_404(Cidade, pk=id)
-    form = CidadeForm(request.POST or None ,instance=cidade_obj)
-
-    if request.method == "POST":
-        form = CidadeForm(request.POST, instance=cidade_obj)
-        if form.is_valid():
-            form.save()
-            return redirect('cidades-list')
-        pass
-
-    context = {
-        'form': form,
-        'obj':cidade_obj
-    }
-
-    return render(request, 'cadastros/edita_cidades.html', context)
+class CidadeUpdate(UpdateView):
+    model = Cidade
+    form_class = CidadeForm
+    template_name = 'cadastros/edita_cidades.html'
+    success_url = reverse_lazy('cidades-list')
+    context_object_name = 'obj'

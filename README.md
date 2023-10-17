@@ -44,3 +44,4 @@
 
 # Referencias
  - [Django Shotcuts](https://docs.djangoproject.com/en/4.2/topics/http/shortcuts/)
+ - [ccbv.co.uk](https://ccbv.co.uk/)

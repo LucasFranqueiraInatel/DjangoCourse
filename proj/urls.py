@@ -18,8 +18,6 @@ from django.contrib import admin
 from django.urls import path
 from django.urls import include, path
 
-from cadastros.views import lista_cidades
-
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('cadastros.urls')) #http://proj/cidades
