@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404, redirect
 
 from cadastros.forms import CidadeForm
@@ -33,7 +34,7 @@ def detalhe_cidade(request, id):
 
     return render(request, 'cadastros/detalhe_cidades.html', context)
 
-
+@login_required
 def remove_cidade(request, id):
     # id_cidade = request.GET['id_cidade']
 
@@ -42,7 +43,7 @@ def remove_cidade(request, id):
 
     return redirect('cidades-list')
 
-
+@login_required
 def cadastra_cidade(request):
     if request.method == "POST":
         form = CidadeForm(request.POST)
@@ -58,7 +59,7 @@ def cadastra_cidade(request):
 
     return render(request, 'cadastros/cadastra_cidades.html', context)
 
-
+@login_required
 def editar_cidade(request, id):
     # id = request.GET.get('id', None)
     cidade_obj = get_object_or_404(Cidade, pk=id)

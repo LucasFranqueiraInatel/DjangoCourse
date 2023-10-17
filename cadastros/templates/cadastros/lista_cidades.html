@@ -3,7 +3,9 @@
 {% block conteudo %}
 <h1>Cidades Cadastradas</h1>
 <p>
+    {% if request.user.is_authenticated %}
     <a class="btn btn-primary" href="{% url 'cidades-cadastro' %}" role="button">Cadastrar nova Cidade</a>
+    {% endif %}
 </p>
 <div>
     <ul class="list-group">
