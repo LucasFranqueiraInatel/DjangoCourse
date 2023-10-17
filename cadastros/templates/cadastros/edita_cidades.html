@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block conteudo %}
+<h1>Editar Cidade</h1>
+
+
+<form action="{% url 'cidades-editar' obj.id %}" method="post">
+
+    {{ form.as_p}}
+    {% csrf_token %}
+
+    <button type="submit" value="Atualizar" class="btn btn-primary">Atualizar</button>
+    <a class="btn btn-danger" href="{% url 'cidades-list' %}" role="button">Back</a>
+
+</form>
+
+
+{% endblock %}

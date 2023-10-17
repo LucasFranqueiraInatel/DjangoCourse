@@ -31,8 +31,8 @@ def detalhe_cidade(request, id):
         "titulo": "SIDIA"
     }
 
-
     return render(request, 'cadastros/detalhe_cidades.html', context)
+
 
 def remove_cidade(request, id):
     # id_cidade = request.GET['id_cidade']
@@ -41,6 +41,7 @@ def remove_cidade(request, id):
     cidade.delete()
 
     return redirect('cidades-list')
+
 
 def cadastra_cidade(request):
     if request.method == "POST":
@@ -56,3 +57,23 @@ def cadastra_cidade(request):
     }
 
     return render(request, 'cadastros/cadastra_cidades.html', context)
+
+
+def editar_cidade(request, id):
+    # id = request.GET.get('id', None)
+    cidade_obj = get_object_or_404(Cidade, pk=id)
+    form = CidadeForm(request.POST or None ,instance=cidade_obj)
+
+    if request.method == "POST":
+        form = CidadeForm(request.POST, instance=cidade_obj)
+        if form.is_valid():
+            form.save()
+            return redirect('cidades-list')
+        pass
+
+    context = {
+        'form': form,
+        'obj':cidade_obj
+    }
+
+    return render(request, 'cadastros/edita_cidades.html', context)
