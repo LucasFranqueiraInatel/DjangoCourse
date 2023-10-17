@@ -1,4 +1,5 @@
 from django.contrib.auth.decorators import login_required
+from django.contrib.messages.views import SuccessMessageMixin
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse_lazy
 from django.views import View
@@ -43,9 +44,11 @@ class CidadeCreate(CreateView):
     success_url = reverse_lazy('cidades-list')
 
 
-class CidadeUpdate(UpdateView):
+class CidadeUpdate(UpdateView, SuccessMessageMixin):
     model = Cidade
     form_class = CidadeForm
     template_name = 'cadastros/edita_cidades.html'
     success_url = reverse_lazy('cidades-list')
     context_object_name = 'obj'
+    success_message = "Cadastro Atualizado com Sucesso!"
+
