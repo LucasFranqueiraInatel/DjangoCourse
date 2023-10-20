@@ -11,6 +11,22 @@ services:
     entrypoint: ['sh', 'run-django.sh']
     depends_on:
       - db_prod
+    networks:
+      - database
+
+  proxy:
+    image: nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./etc/nginx:/etc/nginx/conf.d/
+      - ./log/nginx:/var/log/nginx
+      - ./static:/var/www/static
+    depends_on:
+      - app
+    networks:
+      - web
 
   db_prod:
     image: mdillon/postgis:latest
@@ -21,6 +37,12 @@ services:
       - "5434:5432"
     volumes:
       - sidia-data-prod:/var/lib/postgresql/data
+    networks:
+      - database
 
 volumes:
   sidia-data-prod:
+
+networks:
+  web:
+  database:
