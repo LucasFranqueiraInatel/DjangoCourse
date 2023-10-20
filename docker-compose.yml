@@ -10,22 +10,17 @@ services:
       - .:/code
     entrypoint: ['sh', 'run-django.sh']
     depends_on:
-      - db
+      - db_prod
 
-  db:
+  db_prod:
     image: mdillon/postgis:latest
     environment:
       POSTGRES_PASSWORD: root
       POSTGRES_DB: sidia
     ports:
-      - "5433:5432"
+      - "5434:5432"
     volumes:
       - sidia-data-prod:/var/lib/postgresql/data
-
-  adminer:
-    image: adminer
-    ports:
-      - 8081:8080
 
 volumes:
   sidia-data-prod:
