@@ -14,6 +14,6 @@ class SolicitacaoSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Solicitacao
-        fields = '__all__'
-        # fields = ['id', 'categoria','nome', 'email', 'assunto', 'descricao', 'arquivo','status', 'atendente', 'data_solicitacao',
-        #           'ultima_atualizacao', 'interacoes']
+        # fields = '__all__'
+        fields = ['id', 'categoria','nome', 'email', 'assunto', 'descricao', 'arquivo','status', 'atendente', 'data_solicitacao',
+                  'ultima_atualizacao', 'interacoes']
