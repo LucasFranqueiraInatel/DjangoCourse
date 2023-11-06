@@ -19,4 +19,4 @@ DATABASES = {
 AUTH_PASSWORD_VALIDATORS = []
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-
+DEFAULT_FROM_EMAIL = 'Suporte  <suporte@sidia.com.br>'

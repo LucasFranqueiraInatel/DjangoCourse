@@ -144,6 +144,8 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+DEFAULT_FROM_EMAIL = 'Suporte  <suporte@sidia.com.br>'
+
 
 #hack para importar os arquivos de settings de acordo com o ambiente
 # try:

@@ -1,5 +1,9 @@
 from django.contrib.auth.models import User
+from django.core.mail import send_mail
 from django.db import models
+
+from proj import settings
+
 
 class Categoria(models.Model):
 
@@ -74,17 +78,23 @@ class Interacao(models.Model):
 
         return f'{self.pk}'
 
-    def send_mail_message(self):
-        pass
+    # def save(self, *args, **kwargs):
+    #
+    #     if self.pk:
+    #         pass
+    #
+    #     super().save(*args, **kwargs)
 
-        # subject = f'{self.solicitacao} - Nova interação - {self.get_tipo_display()}'
-        #
-        # send_mail(
-        #     subject=subject,
-        #     message=self.descricao,
-        #     from_email=settings.DEFAULT_FROM_EMAIL,
-        #     recipient_list=[self.solicitacao.email]
-        # )
+    def send_mail_message(self):
+
+        subject = f'{self.solicitacao} - Nova interação - {self.get_tipo_display()}'
+
+        send_mail(
+            subject=subject,
+            message=self.descricao,
+            from_email=settings.DEFAULT_FROM_EMAIL,
+            recipient_list=[self.solicitacao.email]
+        )
         #
         # email_data = {
         #     'subject': subject,

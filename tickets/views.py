@@ -22,8 +22,9 @@ class NovaSolicitacao(View):
             obj = form.save(commit=True)
             obj.save()
 
-            # interacao = Interacao.objects.create(solicitacao=obj, tipo=Interacao.TIPO_STATUS_CHANGE, descricao='Solicitação aberta')
-            # interacao.send_mail_message()
+            # Interacao.objects.create(solicitacao=obj, tipo=Interacao.TIPO_STATUS_CHANGE, descricao='Solicitação aberta')
+            interacao = Interacao.objects.create(solicitacao=obj, tipo=Interacao.TIPO_STATUS_CHANGE, descricao='Solicitação aberta')
+            interacao.send_mail_message()
 
             return redirect('cidades-list')
 
