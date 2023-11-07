@@ -4,14 +4,27 @@ DEBUG = True
 ALLOWED_HOSTS = ['*']
 INTERNAL_IPS = ('127.0.0.1', 'localhost',)
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'sidia',
+#         'USER': 'postgres',
+#         'PASSWORD': 'root',
+#         'HOST': '127.0.0.1',
+#         'PORT': '5433',
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
+        'ENGINE': 'djongo',
         'NAME': 'sidia',
-        'USER': 'postgres',
-        'PASSWORD': 'root',
-        'HOST': '127.0.0.1',
-        'PORT': '5433',
+        'CLIENT': {
+                'host': '127.0.0.1',
+                'port': 27016,
+                'username': 'root',
+                'password': 'sidia',
+            },
     }
 }
 
