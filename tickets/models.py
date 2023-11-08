@@ -49,6 +49,23 @@ class Solicitacao(models.Model):
 
     def __str__(self):
         return f'TICKET{self.pk:04d}'
+
+    def registrar_atendente(self, user):
+
+        self.status = self.STATUS_ONGOING
+        self.atendente = user
+        self.save()
+
+        interacao_obj = Interacao.objects.create(
+            solicitacao=self,
+            tipo=Interacao.TIPO_ASSIGNED,
+            descricao=f'Solicitação assinada para o atendente {user.get_full_name()}',
+            atendente=user,
+        )
+
+        interacao_obj.send_mail_message()
+
+        return True
 class Interacao(models.Model):
 
     TIPO_ASSIGNED = 0

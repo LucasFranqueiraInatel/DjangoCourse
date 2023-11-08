@@ -45,7 +45,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'crispy_forms',
     'cadastros',
-    'tickets'
+    'tickets',
+    'django_tables2'
 ]
 
 MIDDLEWARE = [
