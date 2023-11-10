@@ -1,5 +1,6 @@
 <div>
   {% if not record.atendente %}
+  <a href="{% url 'detalhe-solicitacao-ticket' record.id%}" class="btn btn-success">Assinar</a>
   <a href="{% url 'assinar-solicitacao-ticket' record.id%}" class="btn btn-primary">Assinar</a>
   {% endif %}
   <button type="button" class="btn btn-warning">Responder</button>

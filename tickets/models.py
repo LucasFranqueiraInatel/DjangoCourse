@@ -66,6 +66,22 @@ class Solicitacao(models.Model):
         interacao_obj.send_mail_message()
 
         return True
+
+    def registrar_resposta(self, user, mensagem):
+
+        self.atendente = user
+        self.save()
+
+        interacao_obj = Interacao.objects.create(
+            solicitacao=self,
+            tipo=Interacao.TIPO_TEAM_RESPONSE,
+            descricao=f'Nova resposta: {mensagem}',
+            atendente=user,
+        )
+
+        interacao_obj.send_mail_message()
+
+        return True
 class Interacao(models.Model):
 
     TIPO_ASSIGNED = 0

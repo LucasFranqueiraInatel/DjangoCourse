@@ -73,3 +73,11 @@ class AssinarView(View):
         solicitacao.registrar_atendente(request.user)
 
         return redirect('lista-solicitacao-ticket')
+
+class DetalheTicketView(View):
+
+    def get(self, request, id):
+
+        solicitacao = get_object_or_404(Solicitacao, pk=id)
+
+        return render(request, 'tickets/detalhe.html', {'obj': solicitacao} )
